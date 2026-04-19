@@ -61,7 +61,7 @@ export function Dropzone() {
       <div className="dropzone-text">
         {dragging ? "Relacher pour ajouter" : "Cliquer ou glisser des documents"}
       </div>
-      <div className="dropzone-hint">PDF, Word, RTF, TXT — 100% local</div>
+      <div className="dropzone-hint">PDF, Word, RTF, TXT</div>
     </div>
   );
 }

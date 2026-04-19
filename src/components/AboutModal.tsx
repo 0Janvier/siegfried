@@ -11,7 +11,7 @@ export function AboutModal({ onClose }: AboutModalProps) {
           ×
         </button>
         <h2 id="about-title" className="about-title">Siegfried</h2>
-        <p className="about-version">v0.1.0 — Anonymiseur de documents 100 % local</p>
+        <p className="about-version">v0.1.0 — Anonymiseur de documents</p>
         <div className="about-signature">
           <p className="about-author">Marc Sztulman</p>
           <p className="about-tagline">vous simplifie la vie.</p>
