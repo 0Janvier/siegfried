@@ -16,6 +16,9 @@ dist-ssr
 src-tauri/target/
 src-tauri/tools/
 
+# Local Claude Code config
+.claude/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
