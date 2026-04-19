@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import { Dropzone } from "./components/Dropzone";
@@ -6,6 +6,7 @@ import { FileList } from "./components/FileList";
 import { TextViewer } from "./components/TextViewer";
 import { EntityPanel } from "./components/EntityPanel";
 import { ExportPanel } from "./components/ExportPanel";
+import { AboutModal } from "./components/AboutModal";
 import { useStore } from "./store";
 import { analyze } from "./lib/anonymizer";
 import { applyPseudonyms } from "./lib/pseudo-map";
@@ -29,6 +30,7 @@ export default function App() {
   const pendingReplace = useStore((s) => s.pendingReplace);
   const applyReplace = useStore((s) => s.applyReplace);
   const dismissReplace = useStore((s) => s.dismissReplace);
+  const [aboutOpen, setAboutOpen] = useState(false);
 
   useEffect(() => {
     invoke<[string, boolean][]>("check_tools").then((results) => {
@@ -120,10 +122,19 @@ export default function App() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Siegfried<span className="accent">2</span></h1>
+        <h1>Siegfried</h1>
         <span className="subtitle">Anonymiseur de documents</span>
         {status && <span className="status">{status}</span>}
+        <button
+          className="btn-about"
+          onClick={() => setAboutOpen(true)}
+          aria-label="À propos"
+          title="À propos"
+        >
+          ⓘ
+        </button>
       </header>
+      {aboutOpen && <AboutModal onClose={() => setAboutOpen(false)} />}
       {busy && (
         <div className="progress-wrapper">
           <div className="progress-bar"><div className="progress-bar-fill" /></div>

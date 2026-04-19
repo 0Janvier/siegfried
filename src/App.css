@@ -45,6 +45,127 @@ html, body, #root {
   font-size: 12px;
 }
 
+.btn-about {
+  background: transparent;
+  border: none;
+  color: #8e8e93;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+.btn-about:hover {
+  color: #5696AB;
+  background: #f2f2f7;
+}
+
+.about-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 100;
+  animation: about-fade 0.2s ease-out;
+}
+
+.about-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  padding: 32px 36px 28px;
+  min-width: 360px;
+  max-width: 440px;
+  text-align: center;
+  animation: about-pop 0.22s ease-out;
+}
+
+.about-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: #8e8e93;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+}
+.about-close:hover {
+  color: #1c1c1e;
+}
+
+.about-title {
+  margin: 0 0 4px;
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1c1c1e;
+}
+
+.about-version {
+  margin: 0 0 28px;
+  color: #8e8e93;
+  font-size: 12px;
+}
+
+.about-signature {
+  padding: 18px 0 22px;
+  border-top: 1px solid #f0f0f2;
+  border-bottom: 1px solid #f0f0f2;
+  margin-bottom: 18px;
+}
+
+.about-author {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #5696AB;
+  letter-spacing: 0.01em;
+}
+
+.about-tagline {
+  margin: 4px 0 0;
+  color: #4a4a4f;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.about-links {
+  font-size: 11px;
+  color: #8e8e93;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.about-links a {
+  color: #5696AB;
+  text-decoration: none;
+}
+.about-links a:hover {
+  text-decoration: underline;
+}
+.about-sep {
+  color: #d1d1d6;
+}
+
+@keyframes about-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes about-pop {
+  from { opacity: 0; transform: translate(-50%, -48%) scale(0.96); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
 .app-body {
   flex: 1;
   display: grid;
