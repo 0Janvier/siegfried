@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="src-tauri/icons/128x128@2x.png" alt="Siegfried2" width="128" />
+  <img src="src-tauri/icons/128x128@2x.png" alt="Siegfried" width="128" />
 </p>
 
-# Siegfried2
+# Siegfried
 
 **Anonymiseur PDF 100 % local, adapté aux données juridiques françaises.**
 
@@ -22,7 +22,7 @@
 
 ---
 
-## Pourquoi Siegfried2
+## Pourquoi Siegfried
 
 Avocat, la protection des données me préoccupe depuis toujours. Le secret professionnel structure l'exercice, et chaque dossier transporte son lot de noms, d'adresses, d'IBAN ou de numéros de sécurité sociale à manier avec précaution.
 
@@ -30,7 +30,7 @@ Avec l'essor des IA génératives, le Conseil national des barreaux a précisé 
 
 Le problème pratique est connu : la plupart des outils de pseudonymisation disponibles sur le marché supposent que le document parte sur un serveur tiers. Soit précisément le travers que la règle entend prévenir.
 
-Siegfried2 propose une réponse simple. L'extraction du texte, la détection des données personnelles et leur pseudonymisation s'effectuent **intégralement sur la machine locale**. Aucun appel réseau, aucun serveur, aucune télémétrie. La table de correspondance générée permet ensuite de ré-identifier la réponse de l'IA une fois celle-ci revenue.
+Siegfried propose une réponse simple. L'extraction du texte, la détection des données personnelles et leur pseudonymisation s'effectuent **intégralement sur la machine locale**. Aucun appel réseau, aucun serveur, aucune télémétrie. La table de correspondance générée permet ensuite de ré-identifier la réponse de l'IA une fois celle-ci revenue.
 
 > **Règle CNB.** L'avocat ne transmet jamais à une IA générative des données
 > couvertes par le secret professionnel. Les données sensibles doivent être
@@ -47,7 +47,7 @@ Siegfried2 propose une réponse simple. L'extraction du texte, la détection des
 
 ## L'esprit du projet
 
-Siegfried2 est un projet amateur, écrit au fil des soirs et des week-ends, avec davantage de curiosité que de formation formelle en développement. L'outil fonctionne, il rend service, mais il reste perfectible.
+Siegfried est un projet amateur, écrit au fil des soirs et des week-ends, avec davantage de curiosité que de formation formelle en développement. L'outil fonctionne, il rend service, mais il reste perfectible.
 
 Rien n'est vendu, rien n'est monétisé. Le code est librement réutilisable sous Apache 2.0. Les suggestions, issues et pull requests sont accueillies avec plaisir (voir [CONTRIBUTING.md](CONTRIBUTING.md)).
 
