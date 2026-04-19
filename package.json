@@ -1,0 +1,41 @@
+{
+  "name": "siegfried",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Local PDF anonymizer for French lawyers — reversible pseudonymization, 100% offline",
+  "author": "Marc Sztulman",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0Janvier/siegfried.git"
+  },
+  "homepage": "https://github.com/0Janvier/siegfried#readme",
+  "bugs": {
+    "url": "https://github.com/0Janvier/siegfried/issues"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri",
+    "test": "bun run scripts/test-anonymizer.ts"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-dialog": "^2.7.0",
+    "@tauri-apps/plugin-fs": "^2.5.0",
+    "@tauri-apps/plugin-opener": "^2",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "zustand": "^5.0.12"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react": "^4.6.0",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4",
+    "@tauri-apps/cli": "^2"
+  }
+}

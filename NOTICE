@@ -1,0 +1,21 @@
+Siegfried2
+Copyright 2026 Marc Sztulman
+
+This product includes software developed at Marc Sztulman (https://github.com/sztulman/siegfried2).
+
+This software uses the following open-source components:
+
+- Tauri (Apache 2.0 / MIT) — https://tauri.app
+- React (MIT) — https://react.dev
+- Zustand (MIT) — https://github.com/pmndrs/zustand
+- Vite (MIT) — https://vitejs.dev
+- encoding_rs (Apache 2.0 / MIT) — https://github.com/hsivonen/encoding_rs
+- chardetng (Apache 2.0 / MIT) — https://github.com/hsivonen/chardetng
+
+At runtime, this application shells out to the following external tools:
+
+- Poppler (GPL-2.0) — pdfinfo, pdftotext, pdftoppm — https://poppler.freedesktop.org
+- Tesseract OCR (Apache 2.0) — https://github.com/tesseract-ocr/tesseract
+
+These tools are bundled in redistributable builds and remain under their
+respective licenses. See each project for full terms.
