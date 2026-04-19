@@ -12,6 +12,14 @@
 > Pas un produit SaaS, pas une plateforme. Un petit utilitaire qui tourne
 > sur votre Mac, de bout en bout sous votre contrôle.
 
+<p align="center">
+  <a href="https://github.com/0Janvier/siegfried/releases/latest">
+    <img src="https://img.shields.io/badge/⬇️%20Télécharger-Siegfried.dmg-5696AB?style=for-the-badge&logo=apple&logoColor=white" alt="Télécharger Siegfried pour macOS" />
+  </a>
+</p>
+
+[![Latest Release](https://img.shields.io/github/v/release/0Janvier/siegfried?label=version&color=5696AB)](https://github.com/0Janvier/siegfried/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/0Janvier/siegfried/total?color=5696AB)](https://github.com/0Janvier/siegfried/releases)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![CI](https://github.com/0Janvier/siegfried/actions/workflows/ci.yml/badge.svg)](https://github.com/0Janvier/siegfried/actions/workflows/ci.yml)
 [![Platform](https://img.shields.io/badge/platform-macOS%2011%2B-lightgrey.svg)](#installation)
