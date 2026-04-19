@@ -27,3 +27,7 @@ tempfile = "3"
 anyhow = "1"
 encoding_rs = "0.8"
 chardetng = "0.1"
+image = { version = "0.25", default-features = false, features = ["png"] }
+imageproc = { version = "0.25", default-features = false }
+regex = "1"
+html-escape = "0.2"

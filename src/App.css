@@ -304,6 +304,23 @@ html, body, #root {
 .btn-secondary:focus-visible { outline: 2px solid #5696AB; outline-offset: 2px; }
 .btn-secondary:disabled { opacity: 0.4; cursor: not-allowed; }
 
+.btn-redact {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #1c1c1e;
+  border-radius: 8px;
+  background: #1c1c1e;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: all 0.15s;
+}
+.btn-redact:hover:not(:disabled) { background: #000; }
+.btn-redact:focus-visible { outline: 2px solid #1c1c1e; outline-offset: 2px; }
+.btn-redact:disabled { opacity: 0.35; cursor: not-allowed; }
+
 .btn-ghost {
   background: transparent;
   border: none;

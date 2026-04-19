@@ -19,7 +19,7 @@ TESSDATA_DIR="$TOOLS_DIR/tessdata"
 
 BREW_PREFIX="$(brew --prefix)"
 
-BINARIES=(pdfinfo pdftotext pdftoppm tesseract)
+BINARIES=(pdfinfo pdftotext pdftoppm pdfunite tesseract)
 
 log() { printf "\033[36m[bundle-tools]\033[0m %s\n" "$1"; }
 err() { printf "\033[31m[error]\033[0m %s\n" "$1" >&2; exit 1; }
@@ -59,6 +59,7 @@ dylibbundler \
   -x "$TOOLS_DIR/pdfinfo" \
   -x "$TOOLS_DIR/pdftotext" \
   -x "$TOOLS_DIR/pdftoppm" \
+  -x "$TOOLS_DIR/pdfunite" \
   -x "$TOOLS_DIR/tesseract" \
   -d "$LIB_DIR" \
   -p "@executable_path/../tools/lib/" \
@@ -81,8 +82,8 @@ fi
 log "Smoke test"
 for bin in "${BINARIES[@]}"; do
   case "$bin" in
-    tesseract) flag="--version" ;;
-    *)         flag="-v" ;;
+    tesseract|pdfunite) flag="--version" ;;
+    *)                  flag="-v" ;;
   esac
   if ! "$TOOLS_DIR/$bin" "$flag" 2>&1 | head -1 | grep -qiE "version|[0-9]+\.[0-9]"; then
     err "$bin failed smoke test (flag: $flag)"

@@ -1,18 +1,23 @@
 import { useState } from "react";
 import { save } from "@tauri-apps/plugin-dialog";
 import { writeTextFile } from "@tauri-apps/plugin-fs";
+import { invoke } from "@tauri-apps/api/core";
 import { useStore } from "../store";
 import { applyPseudonyms } from "../lib/pseudo-map";
 import { encryptJson } from "../lib/crypto";
+import { entitiesToRedactionRequests } from "../lib/redact-mapping";
 
 export function ExportPanel() {
   const text = useStore((s) => s.text);
   const entities = useStore((s) => s.entities);
   const pseudoMap = useStore((s) => s.pseudoMap);
+  const files = useStore((s) => s.files);
   const setBusy = useStore((s) => s.setBusy);
   const [encrypt, setEncrypt] = useState(true);
 
   const canExport = text.length > 0 && entities.length > 0 && pseudoMap !== null;
+  const hasPdfSources = files.some((f) => f.path.toLowerCase().endsWith(".pdf"));
+  const canRedact = canExport && hasPdfSources;
 
   async function doExport() {
     if (!pseudoMap) return;
@@ -84,6 +89,39 @@ export function ExportPanel() {
     setBusy(false, "Texte anonymise copie");
   }
 
+  async function doExportRedacted() {
+    const redactions = entitiesToRedactionRequests(text, entities);
+    if (redactions.length === 0) {
+      setBusy(false, "Aucune entite active a caviarder");
+      return;
+    }
+
+    const pdfPaths = files.filter((f) => f.path.toLowerCase().endsWith(".pdf")).map((f) => f.path);
+    if (pdfPaths.length === 0) {
+      setBusy(false, "Aucun PDF source — le caviardage ne fonctionne que pour les PDF");
+      return;
+    }
+
+    const target = await save({
+      defaultPath: "document_caviarde.pdf",
+      filters: [{ name: "PDF", extensions: ["pdf"] }],
+    });
+    if (!target) return;
+
+    setBusy(true, "Caviardage en cours…");
+    try {
+      await invoke("export_redacted_pdf", {
+        sourcePaths: pdfPaths,
+        redactions,
+        outputPath: target,
+      });
+      const name = target.split("/").pop() || target;
+      setBusy(false, `Caviardage : ${name} (${redactions.length} entite(s))`);
+    } catch (e) {
+      setBusy(false, `Erreur caviardage : ${e}`);
+    }
+  }
+
   return (
     <>
       <label className="export-option">
@@ -99,6 +137,14 @@ export function ExportPanel() {
       </button>
       <button className="btn-primary" disabled={!canExport} onClick={doExport}>
         Exporter (.txt + mapping)
+      </button>
+      <button
+        className="btn-redact"
+        disabled={!canRedact}
+        onClick={doExportRedacted}
+        title={hasPdfSources ? "Exporte un PDF avec zones sensibles noircies" : "Nécessite au moins un PDF source"}
+      >
+        Exporter PDF caviarde
       </button>
     </>
   );

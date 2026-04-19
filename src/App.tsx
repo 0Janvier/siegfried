@@ -39,6 +39,21 @@ export default function App() {
     });
   }, [setToolWarnings]);
 
+  // Redaction progress listener (installed once for the whole session)
+  useEffect(() => {
+    const unlisten = listen<{ file: string; page: number; total_pages: number }>(
+      "redact:progress",
+      (ev) => {
+        const { file, page, total_pages } = ev.payload;
+        const name = file.split("/").pop() ?? file;
+        useStore.getState().setBusy(true, `Caviardage — ${name} p.${page}/${total_pages}`);
+      }
+    );
+    return () => {
+      unlisten.then((fn) => fn()).catch(() => {});
+    };
+  }, []);
+
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (entities.length === 0) return;

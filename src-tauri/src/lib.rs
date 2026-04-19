@@ -1,6 +1,8 @@
+mod pdf_redact;
 mod text_extract;
 mod tool_paths;
 
+use pdf_redact::{redact_pdf, RedactionRequest};
 use text_extract::{extract_file_with_progress, ExtractedPage, ProgressCallback};
 use tool_paths::resolve_tool;
 use std::path::PathBuf;
@@ -78,9 +80,45 @@ fn cancel_extraction(state: State<'_, ExtractionState>) {
     state.cancel.store(true, Ordering::SeqCst);
 }
 
+#[derive(serde::Serialize, Clone)]
+struct RedactProgressEvent {
+    file: String,
+    page: u32,
+    total_pages: u32,
+}
+
+#[tauri::command]
+async fn export_redacted_pdf(
+    app: AppHandle,
+    source_paths: Vec<String>,
+    redactions: Vec<RedactionRequest>,
+    output_path: String,
+) -> Result<(), String> {
+    let sources: Vec<PathBuf> = source_paths.iter().map(PathBuf::from).collect();
+    let output = PathBuf::from(&output_path);
+
+    tauri::async_runtime::spawn_blocking(move || {
+        let app_clone = app.clone();
+        let cb: pdf_redact::ProgressCallback = Box::new(move |page, total, file| {
+            let _ = app_clone.emit(
+                "redact:progress",
+                RedactProgressEvent {
+                    file: file.to_string(),
+                    page,
+                    total_pages: total,
+                },
+            );
+        });
+        redact_pdf(&sources, &redactions, &output, cb)
+            .map_err(|e| format!("caviardage echoue : {}", e))
+    })
+    .await
+    .map_err(|e| format!("erreur interne : {}", e))?
+}
+
 #[tauri::command]
 fn check_tools() -> Vec<(String, bool)> {
-    ["pdfinfo", "pdftotext", "pdftoppm", "tesseract"]
+    ["pdfinfo", "pdftotext", "pdftoppm", "pdfunite", "tesseract"]
         .iter()
         .map(|t| {
             let tool_path = resolve_tool(t);
@@ -107,7 +145,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             extract_files,
             cancel_extraction,
-            check_tools
+            check_tools,
+            export_redacted_pdf
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
