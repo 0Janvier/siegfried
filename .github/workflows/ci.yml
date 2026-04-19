@@ -48,6 +48,13 @@ jobs:
       - name: Install external tools (for tests)
         run: brew install poppler tesseract tesseract-lang
 
+      - name: Create tools resource placeholder
+        # tauri.conf.json references src-tauri/tools/ as a bundle resource,
+        # but the directory is gitignored (populated by scripts/bundle-tools.sh
+        # before distribution builds). Create an empty placeholder so
+        # cargo check / cargo test can run on a fresh clone.
+        run: mkdir -p src-tauri/tools && touch src-tauri/tools/.gitkeep
+
       - name: cargo check
         working-directory: src-tauri
         run: cargo check --all-targets
