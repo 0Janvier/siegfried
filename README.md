@@ -43,6 +43,10 @@ Siegfried propose une réponse simple. L'extraction du texte, la détection des 
 > l'anonymisation avant transmission à un tiers (y compris une IA).
 > Voir [LICENSE](LICENSE), sections 7 et 8.
 
+📘 **Vous êtes utilisateur, pas développeur ?** Consultez le
+[Guide de l'utilisateur](GUIDE.md) — installation et workflow complet en
+quelques minutes.
+
 ---
 
 ## L'esprit du projet
