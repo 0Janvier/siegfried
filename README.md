@@ -4,13 +4,8 @@
 
 # Siegfried
 
-**Anonymiseur PDF 100 % local, adapté aux données juridiques françaises.**
-
-*Concatène. Extrait. Pseudonymise. Rien ne quitte la machine.*
-
-> Projet personnel partagé librement.
-> Pas un produit SaaS, pas une plateforme. Un petit utilitaire qui tourne
-> sur votre Mac, de bout en bout sous votre contrôle.
+> **Pseudonymisation locale pour l'IA générative.**
+> Parce que la souveraineté des données ne se délègue pas.
 
 <p align="center">
   <a href="https://github.com/0Janvier/siegfried/releases/latest">
@@ -30,30 +25,71 @@
 
 ---
 
-## Pourquoi Siegfried
+## Le constat : l'IA ne peut faire l'économie d'une vigilance totale
 
-Avocat, la protection des données me préoccupe depuis toujours. Le secret professionnel structure l'exercice, et chaque dossier transporte son lot de noms, d'adresses, d'IBAN ou de numéros de sécurité sociale à manier avec précaution.
+L'IA générative déplace en profondeur la question de la confidentialité. Chaque requête soumise à un modèle transite par un serveur tiers, souvent hors de France, parfois hors d'Europe. La donnée confiée devient, dans bien des cas, matière d'entraînement, journal technique, ou simplement trace exploitable.
 
-Avec l'essor des IA génératives, le Conseil national des barreaux a précisé les lignes. Son **Guide pratique sur l'IA générative** (septembre 2024), puis son **Guide sur la déontologie et l'intelligence artificielle** adopté en assemblée générale le 13 mars 2026, fixent une règle ferme : l'avocat ne transmet jamais à un système d'IA générative des données couvertes par le secret professionnel, sous peine de sanctions. Avant toute requête, les informations sensibles doivent être pseudonymisées ou anonymisées.
+**L'utilisation de l'IA ne peut faire l'économie d'une attention particulière aux données que l'on transmet.** Cette question recoupe à la fois :
 
-Le problème pratique est connu : la plupart des outils de pseudonymisation disponibles sur le marché supposent que le document parte sur un serveur tiers. Soit précisément le travers que la règle entend prévenir.
+- **Le caractère personnel** des informations et le respect de la vie privée ;
+- **Les obligations professionnelles** de ceux qui détiennent ces données ;
+- **Et peut-être avant tout, une exigence de souveraineté** : celle de conserver la maîtrise de ce que l'on produit et de ce que l'on transmet.
 
-Siegfried propose une réponse simple. L'extraction du texte, la détection des données personnelles et leur pseudonymisation s'effectuent **intégralement sur la machine locale**. Aucun appel réseau, aucun serveur, aucune télémétrie. La table de correspondance générée permet ensuite de ré-identifier la réponse de l'IA une fois celle-ci revenue.
+---
 
-> **Règle CNB.** L'avocat ne transmet jamais à une IA générative des données
-> couvertes par le secret professionnel. Les données sensibles doivent être
-> pseudonymisées avant toute requête.
->
-> *Sources : Guide pratique CNB sur l'IA générative (2024) ; Guide CNB sur la*
-> *déontologie et l'intelligence artificielle (assemblée générale du 13 mars 2026).*
+## Pourquoi Siegfried ?
 
-> ⚠️ **Disclaimer.** Fourni « tel quel », sans garantie. Vérifiez toujours
-> l'anonymisation avant transmission à un tiers (y compris une IA).
-> Voir [LICENSE](LICENSE), sections 7 et 8.
+**Conçue par un avocat**, cette application dépasse le seul cercle de la profession juridique. Médecins, journalistes, notaires, experts-comptables, responsables RH, chercheurs, consultants, associations : **toute personne qui manipule des données à caractère personnel** et souhaite recourir à l'IA générative sans renoncer au contrôle de ses fichiers y trouvera un usage immédiat.
 
-📘 **Vous êtes utilisateur, pas développeur ?** Consultez le
-[Guide de l'utilisateur](GUIDE.md) — installation et workflow complet en
-quelques minutes.
+Avocat, cette préoccupation m'accompagne depuis toujours. Le secret professionnel structure l'exercice, et chaque dossier transporte son lot de noms, d'adresses, d'IBAN ou de numéros de sécurité sociale à manier avec la plus grande précaution.
+
+Le Conseil national des barreaux a précisé les lignes. Son *Guide pratique sur l'IA générative* (septembre 2024), puis son *Guide sur la déontologie et l'intelligence artificielle* adopté en assemblée générale le **13 mars 2026**, posent une règle ferme :
+
+> **L'avocat ne transmet jamais à un système d'IA générative des données couvertes par le secret professionnel**, sous peine de sanctions. Avant toute requête, les informations sensibles doivent être pseudonymisées ou anonymisées.
+
+---
+
+## Le problème pratique que personne ne résout vraiment
+
+La plupart des outils de pseudonymisation disponibles sur le marché supposent que le document parte sur un serveur tiers.
+Soit précisément le travers que la règle déontologique entend prévenir.
+
+---
+
+## La réponse de Siegfried
+
+L'extraction du texte, la détection des données personnelles et leur pseudonymisation s'effectuent **intégralement sur la machine locale**.
+
+- Aucun appel réseau.
+- Aucun serveur distant.
+- Aucune télémétrie.
+
+La table de correspondance générée en local permet ensuite de **ré-identifier la réponse de l'IA** une fois celle-ci revenue, et uniquement sur votre poste.
+
+**La souveraineté sur la donnée n'est plus un privilège de spécialistes ; elle devient une exigence de base pour quiconque prend la plume ou le clavier dans un cadre professionnel.**
+
+---
+
+## Ce que dit la règle
+
+| Règle CNB | Application |
+|-----------|-------------|
+| **L'avocat ne transmet jamais à une IA générative des données couvertes par le secret professionnel.** | Siegfried traite les données en local avant tout envoi. |
+| **Les données sensibles doivent être pseudonymisées avant toute requête.** | Détection et remplacement automatique des entités personnelles sans sortie du document. |
+
+**Sources :** *Guide pratique CNB sur l'IA générative* (2024) ; *Guide CNB sur la déontologie et l'intelligence artificielle* (assemblée générale du 13 mars 2026).
+
+---
+
+## ⚠️ Disclaimer
+
+Fourni « tel quel », sans garantie. Vérifiez toujours l'anonymisation avant transmission à un tiers (y compris une IA). Voir [LICENSE](LICENSE), sections 7 et 8.
+
+---
+
+## 📘 Débuter rapidement
+
+Vous êtes utilisateur, pas développeur ? Consultez le **[Guide de l'utilisateur](GUIDE.md)** — installation et workflow complet en quelques minutes.
 
 ---
 
